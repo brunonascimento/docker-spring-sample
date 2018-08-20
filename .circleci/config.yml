@@ -48,11 +48,11 @@ jobs:
       - run:
           name: sonar scanner
           command: |
-            if[ $localbuild == true ] then 
+            if[ $localbuild == "true" ] then 
               gradle sonarqube \
               -Dsonar.organization=brunonascimento-github \
               -Dsonar.host.url=https://sonarcloud.io \
-              -Dsonar.login=5d914a25f7c12cc71dc417f96f2cf926eeb53d0a+ 
+              -Dsonar.login=5d914a25f7c12cc71dc417f96f2cf926eeb53d0a 
             else 
               echo "not running local" 
             fi  
