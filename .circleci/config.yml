@@ -46,6 +46,18 @@ jobs:
       - run: gradle test
       
       - run:
+          name: sonar scanner
+          command: |
+            if[ $localbuild == true ] then 
+              gradle sonarqube \
+              -Dsonar.organization=brunonascimento-github \
+              -Dsonar.host.url=https://sonarcloud.io \
+              -Dsonar.login=5d914a25f7c12cc71dc417f96f2cf926eeb53d0a+ 
+            else 
+              echo "not running local" 
+            fi  
+      
+      - run:
           name: setup docker env
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
