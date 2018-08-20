@@ -51,7 +51,7 @@ jobs:
             gradle sonarqube \
               -Dsonar.organization=brunonascimento-github \
               -Dsonar.host.url=https://sonarcloud.io \
-              -Dsonar.login=5d914a25f7c12cc71dc417f96f2cf926eeb53d0a \
+              -Dsonar.login=sonarkey \
               -Dsonar.branch=master
       
       - run:
