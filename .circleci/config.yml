@@ -49,9 +49,10 @@ jobs:
           name: sonar scanner
           command: |
             gradle sonarqube \
-            -Dsonar.organization=brunonascimento-github \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=5d914a25f7c12cc71dc417f96f2cf926eeb53d0a
+              -Dsonar.organization=brunonascimento-github \
+              -Dsonar.host.url=https://sonarcloud.io \
+              -Dsonar.login=5d914a25f7c12cc71dc417f96f2cf926eeb53d0a \
+              -Dsonar.branch=master
       
       - run:
           name: setup docker env
