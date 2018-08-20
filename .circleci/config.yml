@@ -23,7 +23,6 @@ jobs:
     
     steps:
       - checkout
-      - setup_remote_docker
 
       # Download and cache dependencies
       - restore_cache:
@@ -40,9 +39,30 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
         
       # run tests
+      - run: gradle build
+      
+      # run tests
       - run: gradle test
       
       - run:
-          name: Build application Docker image
+          name: Run sonar scan
           command: |
-            docker build .
+            gradle sonarqube \                                              [±master ●]
+              -Dsonar.organization=brunonascimento-github \
+              -Dsonar.host.url=https://sonarcloud.io \
+              -Dsonar.login=5d914a25f7c12cc71dc417f96f2cf926eeb53d0a
+      
+      - run:
+          name: setup docker env
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+      
+      - run:
+          name: docker build
+          command: |
+           docker build -t brunonasc/app:$CIRCLE_BRANCH .
+           
+      - run:
+          name: docker push
+          command: |
+           docker push brunonasc/app:$CIRCLE_BRANCH .
