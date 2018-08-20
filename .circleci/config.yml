@@ -46,11 +46,3 @@ jobs:
           name: Build application Docker image
           command: |
             docker build -t .
-       - deploy:
-          name: Push application Docker image
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker tag "brunonasc/sampleyellow:${CIRCLE_SHA1}"
-              docker push "brunonasc/sampleyellow:${CIRCLE_SHA1}"
-            fi
-
