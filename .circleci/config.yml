@@ -45,4 +45,4 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            docker build -t .
+            docker build .
